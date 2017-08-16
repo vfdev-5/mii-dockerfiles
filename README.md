@@ -7,8 +7,14 @@ Storage of dockerfiles :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
     - `Keras, tensorflow-gpu, mxnet-cu80, pytorch, torchvision, theano, tensor2tensor, xgboost`
-
+  
 - Mining 
   - `ccminer`
+  - `nheqminer`
 
+## How to build ML/DL image:
 
+```
+docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/base/
+docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/mldl/
+```
