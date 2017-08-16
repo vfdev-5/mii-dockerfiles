@@ -15,6 +15,6 @@ Storage of dockerfiles :
 ## How to build ML/DL image:
 
 ```
-docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/base/
+docker build -t datascience-py3-base:latest mii-dockerfiles/datascience-py3/base/
 docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/mldl/
 ```
