@@ -6,7 +6,7 @@ Storage of dockerfiles :
   - Base :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
-    - `Keras, tensorflow-gpu, mxnet-cu80, pytorch, torchvision, theano, tensor2tensor, xgboost`
+    - `Keras, tensorflow-gpu (1.2.0), mxnet-cu80, pytorch, torchvision, theano, tensor2tensor, xgboost, tensorpack`
 
 - Mining
   - `ccminer`
