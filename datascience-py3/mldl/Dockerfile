@@ -1,7 +1,7 @@
 FROM datascience-py3-base:latest
 MAINTAINER vfdev-mii
 
-LABEL version="0.5"
+LABEL version="0.6"
 LABEL description="Machine learning and deep learning python3/GPU setup"
 
 # Install tensorflow, theano, keras, mxnet
