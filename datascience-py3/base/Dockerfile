@@ -1,7 +1,7 @@
 FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
-LABEL version="0.3"
+LABEL version="0.4"
 LABEL description="Basic data-science python3 setup"
 
 # Update all 
@@ -42,6 +42,8 @@ RUN pip3 install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely
+
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
 # Expose port for jupyter notebook
 EXPOSE 8888
