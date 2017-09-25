@@ -30,6 +30,7 @@ RUN pip3 install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
+        seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
