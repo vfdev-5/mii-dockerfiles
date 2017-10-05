@@ -45,7 +45,7 @@ RUN pip install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-  seaborn \
+        seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
