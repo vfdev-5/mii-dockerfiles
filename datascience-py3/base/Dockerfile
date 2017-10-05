@@ -45,7 +45,7 @@ RUN pip3 install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-  seaborn \
+        seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -58,10 +58,13 @@ RUN pip3 install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
-	joblib
+	joblib \
+        jupyterlab \
+        kaggle-cli
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 
 
 # Expose port for jupyter notebook
