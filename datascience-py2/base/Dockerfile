@@ -58,10 +58,13 @@ RUN pip install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
-	joblib
+	joblib \
+        jupyterlab \
+        kaggle-cli
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 
 
 # Expose port for jupyter notebook
