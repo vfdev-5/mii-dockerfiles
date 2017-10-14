@@ -27,7 +27,8 @@ RUN apt-get install -y --no-install-recommends \
 	python-pip \
 	graphviz \
 	python-gdal \
-	git
+	git \
+        p7zip-full
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -43,7 +44,7 @@ RUN pip install --no-cache-dir setuptools
 RUN pip install --no-cache-dir \
 	wheel \
 	numpy \
-	scipy \
+	scipy \ 
 	matplotlib \
         seaborn \
 	pandas \
@@ -58,6 +59,8 @@ RUN pip install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
+        shapely[vectorized] \
+        fiona \
 	joblib \
         jupyterlab \
         kaggle-cli
