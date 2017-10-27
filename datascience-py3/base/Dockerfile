@@ -63,7 +63,8 @@ RUN pip3 install --no-cache-dir \
         fiona \
 	joblib \
         jupyterlab \
-        kaggle-cli
+        kaggle-cli \ 
+        bson
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
