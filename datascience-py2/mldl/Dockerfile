@@ -6,7 +6,7 @@ LABEL description="Machine learning and deep learning python2/GPU setup"
 
 # Install tensorflow, theano, keras, mxnet
 RUN pip install --no-cache-dir --upgrade \
-	tensorflow-gpu==1.2.0 \
+	tensorflow-gpu \
 	tensorboard \
 	theano \
 	keras \
