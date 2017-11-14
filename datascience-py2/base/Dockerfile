@@ -44,9 +44,9 @@ RUN pip install --no-cache-dir setuptools
 RUN pip install --no-cache-dir \
 	wheel \
 	numpy \
-	scipy \ 
+	scipy \
 	matplotlib \
-        seaborn \
+    seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -59,11 +59,11 @@ RUN pip install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
-        shapely[vectorized] \
-        fiona \
+    shapely[vectorized] \
+    fiona \
 	joblib \
-        jupyterlab \
-        kaggle-cli
+    jupyterlab \
+    kaggle-cli
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
