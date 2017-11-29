@@ -28,7 +28,7 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python3-gdal \
 	git \
-        p7zip-full
+    p7zip-full
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
