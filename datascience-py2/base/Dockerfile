@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
 LABEL version="0.1"
@@ -28,7 +28,7 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python-gdal \
 	git \
-        p7zip-full
+    p7zip-full
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -44,9 +44,9 @@ RUN pip install --no-cache-dir setuptools
 RUN pip install --no-cache-dir \
 	wheel \
 	numpy \
-	scipy \ 
+	scipy \
 	matplotlib \
-        seaborn \
+    seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -59,11 +59,11 @@ RUN pip install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
-        shapely[vectorized] \
-        fiona \
+    shapely[vectorized] \
+    fiona \
 	joblib \
-        jupyterlab \
-        kaggle-cli
+    jupyterlab \
+    kaggle-cli
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension

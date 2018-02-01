@@ -1,7 +1,7 @@
-FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
-LABEL version="0.5"
+LABEL version="0.1"
 LABEL description="Basic data-science python3 setup"
 
 
@@ -28,7 +28,7 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python3-gdal \
 	git \
-        p7zip-full
+    p7zip-full
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -46,7 +46,7 @@ RUN pip3 install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-        seaborn \
+    seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -59,12 +59,11 @@ RUN pip3 install --no-cache-dir \
 	jupyter \
 	pydot \
 	shapely \
-        shapely[vectorized] \
-        fiona \
+    shapely[vectorized] \
+    fiona \
 	joblib \
-        jupyterlab \
-        kaggle-cli \ 
-        bson
+    jupyterlab \
+    kaggle-cli
 
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
