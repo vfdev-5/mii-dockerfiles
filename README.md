@@ -2,11 +2,11 @@
 
 Storage of dockerfiles :
 
-- Datascience with python3 on CUDA8.0, CuDNN5.1, Ubuntu 16.04  
+- Datascience with python3 on CUDA9.0, CuDNN7, Ubuntu 16.04  
   - Base :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
-    - `Keras, tensorflow-gpu (1.2.0), mxnet-cu80, pytorch, torchvision, theano, tensor2tensor, xgboost, tensorpack`
+    - `Keras, tensorflow-gpu, mxnet, pytorch, torchvision, xgboost, tensorpack`
 
 - Datascience with python2 (same as previous)
 
