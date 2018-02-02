@@ -1,7 +1,7 @@
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
-LABEL version="0.1"
+LABEL version="0.2"
 LABEL description="Basic data-science python2 setup"
 
 
@@ -21,6 +21,8 @@ ENV LC_ALL en_US.UTF-8
 RUN apt-get install -y --no-install-recommends \
 	build-essential \
 	curl \
+	gdal-bin \
+	libgdal-dev \
 	wget \
 	python \
 	python-dev \
@@ -28,7 +30,8 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python-gdal \
 	git \
-    p7zip-full
+  p7zip-full \
+	cmake
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -46,7 +49,7 @@ RUN pip install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-    seaborn \
+  seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -58,13 +61,14 @@ RUN pip install --no-cache-dir \
 	ipykernel \
 	jupyter \
 	pydot \
+	graphviz \
 	shapely \
-    shapely[vectorized] \
-    fiona \
+  shapely[vectorized] \
+  fiona \
 	joblib \
-    jupyterlab \
-    kaggle-cli
-
+  jupyterlab \
+  kaggle-cli \
+	rasterio
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN jupyter serverextension enable --py jupyterlab --sys-prefix
