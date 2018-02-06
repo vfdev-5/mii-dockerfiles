@@ -42,7 +42,7 @@ RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpa
 
 
 # For CUDA profiling, TensorFlow requires CUPTI.
-ENV LD_LIBRARY_PATH /usr/loc
+ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 
 # TensorBoard
