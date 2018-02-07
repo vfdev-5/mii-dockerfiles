@@ -70,6 +70,11 @@ RUN pip3 install --no-cache-dir \
   kaggle-cli \
 	rasterio
 
+RUN pip3 install --no-cache-dir \
+	pytest \
+	flake8 \
+	coveralls \
+	pytest-cov
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN jupyter serverextension enable --py jupyterlab --sys-prefix
