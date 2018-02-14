@@ -2,7 +2,7 @@
 
 Storage of dockerfiles :
 
-- Datascience with python3 on CUDA9.0, CuDNN7, Ubuntu 16.04  
+- Datascience with python3 on CUDA9.1, CuDNN7, Ubuntu 16.04  
   - Base :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
