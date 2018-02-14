@@ -10,10 +10,6 @@ Storage of dockerfiles :
 
 - Datascience with python2 (same as previous)
 
-- Mining
-  - `ccminer`
-  - `nheqminer`
-
 ## How to build ML/DL images
 
 ```
@@ -29,7 +25,7 @@ nvidia-docker run -it -p 8888:8888 -p 6006:6006 datascience-py3-mldl:latest
 
 ## How to run `jupyter`
 
-- For security reasons it is advised to have `https` connection and setup a password. 
+- For security reasons it is advised to have `https` connection and setup a password.
 ```
 # On host machine, generate a private key and a certificate for https connections
 docker run -it --rm -v ~/.jupyter/:/root/.jupyter/ datascience-py3-base:latest openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /root/.jupyter/mykey.key -out /root/.jupyter/mycert.pem
@@ -47,7 +43,7 @@ nvidia-docker run \
     -p 6006:6006 \
     -v ~/.jupyter/mykey.key:/root/.jupyter/mykey.key \
     -v ~/.jupyter/mycert.pem:/root/.jupyter/mycert.pem \
-    datascience-py3-mldl:latest \ 
+    datascience-py3-mldl:latest \
     jupyter notebook --port=8888 --ip=0.0.0.0 --allow-root --no-browser \
         --NotebookApp.keyfile=/root/.jupyter/mykey.key \
         --NotebookApp.certfile=/root/.jupyter/mycert.pem \

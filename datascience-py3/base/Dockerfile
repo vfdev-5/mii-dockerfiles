@@ -44,6 +44,9 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir setuptools
 
 
+RUN CC="cc -mavx2" pip3 install --no-cache-dir pillow-simd
+
+
 RUN pip3 install --no-cache-dir \
 	wheel \
 	numpy \
@@ -54,9 +57,9 @@ RUN pip3 install --no-cache-dir \
 	sklearn \
 	scikit-image \
 	scikit-fmm \
+  statsmodels \
 	Cython \
 	opencv-python \
-	Pillow \
 	h5py \
 	ipykernel \
 	jupyter \
@@ -70,11 +73,13 @@ RUN pip3 install --no-cache-dir \
   kaggle-cli \
 	rasterio
 
+
 RUN pip3 install --no-cache-dir \
 	pytest \
 	flake8 \
 	coveralls \
 	pytest-cov
+
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN jupyter serverextension enable --py jupyterlab --sys-prefix
