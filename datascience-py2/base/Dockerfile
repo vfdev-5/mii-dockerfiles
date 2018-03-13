@@ -71,7 +71,7 @@ RUN pip install --no-cache-dir \
 	joblib \
   jupyterlab \
   kaggle-cli \
-	rasterio
+	rasterio==1.0a12
 
 
 RUN pip install --no-cache-dir \
