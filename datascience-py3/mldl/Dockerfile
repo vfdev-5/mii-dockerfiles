@@ -5,12 +5,11 @@ LABEL version="0.2"
 LABEL description="Machine learning and deep learning python3/GPU setup"
 
 
-# Install tensorflow, pytorch, keras, mxnet
+# Install tensorflow, pytorch, keras
 RUN pip3 install --no-cache-dir --upgrade \
 	tensorflow-gpu \
 	tensorboard \
-	keras \
-	git+https://github.com/hyperopt/hyperopt
+	keras
 
 # Inconsistent dependency on numpy==1.13.3 as others depend on 1.14.0
 # RUN pip3 install --no-cache-dir --upgrade \
@@ -39,6 +38,10 @@ RUN pip3 --no-cache-dir install --upgrade torchvision \
 
 # Install Tensorpack latest
 RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpack
+
+# Some other useful packages:
+RUN pip3 install --no-cache-dir imbalanced-learn \
+	iterative-stratification
 
 
 # For CUDA profiling, TensorFlow requires CUPTI.
