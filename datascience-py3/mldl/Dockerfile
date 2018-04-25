@@ -1,20 +1,8 @@
-FROM datascience-py3-base:latest
+FROM datascience-py3-base:9.1-cudnn7
 MAINTAINER vfdev-mii
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL description="Machine learning and deep learning python3/GPU setup"
-
-
-# Install tensorflow, pytorch, keras, mxnet
-RUN pip3 install --no-cache-dir --upgrade \
-	tensorflow-gpu \
-	tensorboard \
-	keras \
-	git+https://github.com/hyperopt/hyperopt
-
-# Inconsistent dependency on numpy==1.13.3 as others depend on 1.14.0
-# RUN pip3 install --no-cache-dir --upgrade \
-# 	https://pypi.python.org/packages/2d/b6/df25199a39eba361ae3c64d97f245709a6dd25c3cec2e327761e8a7b7ac8/mxnet_cu90-1.0.1b20180201-py2.py3-none-manylinux1_x86_64.whl
 
 # Install boost as dependency for lightgbm
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -27,9 +15,16 @@ RUN	pip3 install --no-cache-dir --upgrade xgboost && \
 	pip3 install --no-cache-dir --upgrade lightgbm --install-option=--gpu \
 		--install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
 
+
+RUN pip3 install --no-cache-dir --upgrade catboost
+
+
+RUN pip3 install --no-cache-dir --upgrade fbprophet
+
+
 # Install pytorch and torch vision
 RUN pip3 --no-cache-dir install --upgrade \
-	http://download.pytorch.org/whl/cu90/torch-0.3.1-cp35-cp35m-linux_x86_64.whl
+	http://download.pytorch.org/whl/cu91/torch-0.4.0-cp35-cp35m-linux_x86_64.whl
 
 
 RUN pip3 --no-cache-dir install --upgrade torchvision \
@@ -37,8 +32,21 @@ RUN pip3 --no-cache-dir install --upgrade torchvision \
 	git+https://github.com/lanpa/tensorboard-pytorch
 
 
+# Install tensorflow, keras
+RUN pip3 install --no-cache-dir --upgrade \
+	tensorflow-gpu \
+	tensorboard \
+	keras
+
+
 # Install Tensorpack latest
 RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpack
+
+
+# Install Pillow-SIMD
+RUN pip3 uninstall -y pillow && \
+	CC="cc -mavx2" pip3 install --no-cache-dir --upgrade --force-reinstall pillow-simd
+
 
 
 # For CUDA profiling, TensorFlow requires CUPTI.
@@ -46,8 +54,8 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 
 # TensorBoard
-EXPOSE 6006
+# EXPOSE 6006
 
 
 # Visdom
-EXPOSE 8097
+# EXPOSE 8097

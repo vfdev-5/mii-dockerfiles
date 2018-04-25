@@ -1,7 +1,8 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+
+FROM nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL description="Basic data-science python3 setup"
 
 
@@ -31,7 +32,8 @@ RUN apt-get install -y --no-install-recommends \
 	python3-gdal \
 	git \
   p7zip-full \
-	cmake
+	cmake \
+	nano
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -44,10 +46,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir setuptools
 
 
-RUN CC="cc -mavx2" pip3 install --no-cache-dir pillow-simd
-
-
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --upgrade \
 	wheel \
 	numpy \
 	scipy \
@@ -71,7 +70,10 @@ RUN pip3 install --no-cache-dir \
 	joblib \
   jupyterlab \
   kaggle-cli \
-	rasterio==1.0a12
+	rasterio==1.0a12 \
+	sphinx \
+  imbalanced-learn \
+	iterative-stratification
 
 
 RUN pip3 install --no-cache-dir \
@@ -86,4 +88,4 @@ RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 
 
 # Expose port for jupyter notebook
-EXPOSE 8888
+# EXPOSE 8888
