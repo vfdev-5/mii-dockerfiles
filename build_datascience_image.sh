@@ -1,7 +1,7 @@
 #!/bin/bash
 
 help() {
-    echo "No argument supplied. Usage sh build_datascience_image.sh <python-verion> <type> <tag>"
+    echo "No argument supplied. Usage sh build_datascience_image.sh <python-version> <type> <tag>"
     echo "    <python-version> : py2, py3"
     echo "    <type> : base, mldl"
     echo "    <tag> :  whatever tag"
