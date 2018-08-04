@@ -27,9 +27,7 @@ RUN	pip3 install --no-cache-dir --upgrade xgboost && \
 		--install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
 
 # Install pytorch and torch vision
-RUN pip3 --no-cache-dir install --upgrade \
-	http://download.pytorch.org/whl/cu90/torch-0.3.1-cp35-cp35m-linux_x86_64.whl
-
+RUN pip3 --no-cache-dir install --upgrade torch
 
 RUN pip3 --no-cache-dir install --upgrade torchvision \
 	visdom\
