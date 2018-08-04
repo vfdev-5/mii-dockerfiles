@@ -30,7 +30,7 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python-gdal \
 	git \
-  p7zip-full \
+        p7zip-full \
 	cmake
 
 
@@ -52,7 +52,7 @@ RUN pip install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-  seaborn \
+        seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -66,11 +66,11 @@ RUN pip install --no-cache-dir \
 	pydot \
 	graphviz \
 	shapely \
-  shapely[vectorized] \
-  fiona \
+        shapely[vectorized] \
+        fiona \
 	joblib \
-  jupyterlab \
-  kaggle-cli \
+        jupyterlab \
+        kaggle \
 	rasterio==1.0a12
 
 
