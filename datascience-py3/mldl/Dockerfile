@@ -1,7 +1,7 @@
-FROM datascience-py3-base:latest
+ROM datascience-py3-base:latest
 MAINTAINER vfdev-mii
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL description="Machine learning and deep learning python3/GPU setup"
 
 
@@ -10,10 +10,6 @@ RUN pip3 install --no-cache-dir --upgrade \
 	tensorflow-gpu \
 	tensorboard \
 	keras
-
-# Inconsistent dependency on numpy==1.13.3 as others depend on 1.14.0
-# RUN pip3 install --no-cache-dir --upgrade \
-# 	https://pypi.python.org/packages/2d/b6/df25199a39eba361ae3c64d97f245709a6dd25c3cec2e327761e8a7b7ac8/mxnet_cu90-1.0.1b20180201-py2.py3-none-manylinux1_x86_64.whl
 
 # Install boost as dependency for lightgbm
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -26,13 +22,16 @@ RUN	pip3 install --no-cache-dir --upgrade xgboost && \
 	pip3 install --no-cache-dir --upgrade lightgbm --install-option=--gpu \
 		--install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
 
-# Install pytorch and torch vision
-RUN pip3 --no-cache-dir install --upgrade torch
+# Install pytorch-nightly + LibTorch, torchvision, ignite
+RUN pip3 --no-cache-dir install torch_nightly -f https://download.pytorch.org/whl/nightly/cu92/torch_nightly.html
 
 RUN pip3 --no-cache-dir install --upgrade torchvision \
-	visdom\
-	git+https://github.com/lanpa/tensorboard-pytorch
+	visdom \
+	git+https://github.com/lanpa/tensorboard-pytorch \
+	git+https://github.com/pytorch/ignite.git
 
+RUN cd /opt/ && wget https://download.pytorch.org/libtorch/nightly/cu92/libtorch-shared-with-deps-latest.zip && \
+	7z x libtorch-shared-with-deps-latest.zip
 
 # Install Tensorpack latest
 RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpack

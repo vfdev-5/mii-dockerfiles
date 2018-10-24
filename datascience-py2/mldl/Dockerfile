@@ -1,7 +1,7 @@
 FROM datascience-py2-base:latest
 MAINTAINER vfdev-mii
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL description="Machine learning and deep learning python2/GPU setup"
 
 

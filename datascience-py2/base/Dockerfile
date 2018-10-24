@@ -1,7 +1,7 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu16.04
 MAINTAINER vfdev-mii
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL description="Basic data-science python2 setup"
 
 
@@ -30,7 +30,7 @@ RUN apt-get install -y --no-install-recommends \
 	graphviz \
 	python-gdal \
 	git \
-        p7zip-full \
+  p7zip-full \
 	cmake
 
 
@@ -52,7 +52,7 @@ RUN pip install --no-cache-dir \
 	numpy \
 	scipy \
 	matplotlib \
-        seaborn \
+  seaborn \
 	pandas \
 	sklearn \
 	scikit-image \
@@ -66,12 +66,12 @@ RUN pip install --no-cache-dir \
 	pydot \
 	graphviz \
 	shapely \
-        shapely[vectorized] \
-        fiona \
+  shapely[vectorized] \
+  fiona \
 	joblib \
-        jupyterlab \
-        kaggle \
-	rasterio==1.0a12
+  jupyterlab \
+  kaggle \
+	rasterio
 
 
 RUN pip install --no-cache-dir \
