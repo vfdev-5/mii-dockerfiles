@@ -54,7 +54,7 @@ RUN pip install --no-cache-dir \
 	matplotlib \
   seaborn \
 	pandas \
-	sklearn \
+	scikit-learn \
 	scikit-image \
 	scikit-fmm \
 	statsmodels \
