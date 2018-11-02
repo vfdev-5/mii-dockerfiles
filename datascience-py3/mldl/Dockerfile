@@ -1,4 +1,4 @@
-ROM datascience-py3-base:latest
+FROM datascience-py3-base:latest
 MAINTAINER vfdev-mii
 
 LABEL version="0.3"
