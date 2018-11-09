@@ -25,16 +25,14 @@ RUN	pip3 install --no-cache-dir --upgrade xgboost && \
 # Install pytorch-nightly + LibTorch, torchvision, ignite
 RUN pip3 --no-cache-dir install torch_nightly -f https://download.pytorch.org/whl/nightly/cu92/torch_nightly.html
 
-RUN pip3 --no-cache-dir install --upgrade torchvision \
+RUN pip3 --no-cache-dir install --upgrade torchvision_nightly \
 	visdom \
-	git+https://github.com/lanpa/tensorboard-pytorch \
-	git+https://github.com/pytorch/ignite.git
+	git+https://github.com/lanpa/tensorboard-pytorch
+	
+RUN pip3 install --no-cache-dir --no-deps --upgrade git+https://github.com/pytorch/ignite.git
 
 RUN cd /opt/ && wget https://download.pytorch.org/libtorch/nightly/cu92/libtorch-shared-with-deps-latest.zip && \
 	7z x libtorch-shared-with-deps-latest.zip
-
-# Install Tensorpack latest
-RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpack
 
 # Some other useful packages:
 RUN pip3 install --no-cache-dir imbalanced-learn \
