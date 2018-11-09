@@ -30,7 +30,7 @@ RUN	pip install --no-cache-dir --upgrade xgboost && \
 
 # Install pytorch and torch vision
 RUN pip --no-cache-dir install --upgrade \
-	http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl
+	http://download.pytorch.org/whl/cu92/torch-0.4.1-cp27-cp27mu-linux_x86_64.whl
 
 
 RUN pip --no-cache-dir install --upgrade torchvision \
