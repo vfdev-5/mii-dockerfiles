@@ -37,7 +37,7 @@ docker run -it --rm datascience-py3-base:latest python3 -c "from notebook.auth i
 - Create a container:
 
 ```
-nvidia-docker run \
+docker run --runtime=nvidia \
     --name jupyter \
     -p 8888:8888 \
     -p 6006:6006 \
