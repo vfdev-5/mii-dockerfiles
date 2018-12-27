@@ -2,17 +2,13 @@
 
 Storage of dockerfiles :
 
-- Datascience with python3 on CUDA8.0, CuDNN5.1, Ubuntu 16.04  
+- Datascience with python3 on CUDA9.0, CuDNN7, Ubuntu 16.04  
   - Base :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
-    - `Keras, tensorflow-gpu (1.2.0), mxnet-cu80, pytorch, torchvision, theano, tensor2tensor, xgboost, tensorpack`
+    - `Keras, tensorflow-gpu, pytorch, torchvision, xgboost`
 
 - Datascience with python2 (same as previous)
-
-- Mining
-  - `ccminer`
-  - `nheqminer`
 
 ## How to build ML/DL images
 
@@ -24,7 +20,7 @@ docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/mldl
 ## How to run a docker container (interactive mode)
 
 ```
-nvidia-docker run -it -p 8888:8888 -p 6006:6006 datascience-py3-mldl:latest
+docker run --runtime=nvidia -it -p 8888:8888 -p 6006:6006 datascience-py3-mldl:latest
 ```
 
 ## How to run `jupyter`
@@ -41,7 +37,7 @@ docker run -it --rm datascience-py3-base:latest python3 -c "from notebook.auth i
 - Create a container:
 
 ```
-nvidia-docker run \
+docker run --runtime=nvidia \
     --name jupyter \
     -p 8888:8888 \
     -p 6006:6006 \
