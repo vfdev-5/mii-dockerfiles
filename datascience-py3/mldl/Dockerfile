@@ -1,32 +1,39 @@
 FROM datascience-py3-base:cuda9_cudnn7
 MAINTAINER vfdev-mii
 
-LABEL version="0.1"
+LABEL version="0.3"
 LABEL description="Machine learning and deep learning python3/GPU setup"
 
 
-# Install tensorflow, theano, keras, mxnet
+# Install tensorflow, pytorch, keras
 RUN pip3 install --no-cache-dir --upgrade \
 	tensorflow-gpu \
 	tensorboard \
-	theano \
-	keras \
-	mxnet-cu80 \
-	tensor2tensor \
-	xgboost \ 
-	visdom
+	keras
+
+# Install boost as dependency for lightgbm
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	libboost-dev \
+	libboost-system-dev \
+	libboost-filesystem-dev
 
 
-# Install pytorch and torch vision
-RUN pip3 --no-cache-dir install --upgrade \
-	http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl 	
+RUN	pip3 install --no-cache-dir --upgrade xgboost && \
+	pip3 install --no-cache-dir --upgrade lightgbm --install-option=--gpu \
+		--install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
 
+# Install pytorch-nightly + LibTorch, torchvision, ignite
+RUN pip3 --no-cache-dir install torch
 
-RUN pip3 --no-cache-dir install --upgrade torchvision
+RUN pip3 --no-cache-dir install --upgrade torchvision \
+	visdom \
+	git+https://github.com/lanpa/tensorboard-pytorch
+	
+RUN pip3 install --no-cache-dir --no-deps --upgrade git+https://github.com/pytorch/ignite.git
 
-
-# Install Tensorpack latest
-RUN pip3 install --no-cache-dir --upgrade git+git://github.com/ppwwyyxx/tensorpack
+# Some other useful packages:
+RUN pip3 install --no-cache-dir imbalanced-learn \
+	iterative-stratification
 
 
 # For CUDA profiling, TensorFlow requires CUPTI.
