@@ -20,7 +20,7 @@ docker build -t datascience-py3-mldl:latest mii-dockerfiles/datascience-py3/mldl
 ## How to run a docker container (interactive mode)
 
 ```
-nvidia-docker run -it -p 8888:8888 -p 6006:6006 datascience-py3-mldl:latest
+docker run --runtime=nvidia -it -p 8888:8888 -p 6006:6006 datascience-py3-mldl:latest
 ```
 
 ## How to run `jupyter`
