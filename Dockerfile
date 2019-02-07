@@ -58,7 +58,8 @@ RUN pip install --upgrade pip && \
         pip install --no-cache-dir --upgrade xgboost && \
 	      pip install --no-cache-dir --upgrade lightgbm && \
         pip --no-cache-dir install --upgrade visdom \
-	        git+https://github.com/lanpa/tensorboard-pytorch protobuf && \
+	        git+https://github.com/lanpa/tensorboard-pytorch \
+          protobuf tensorboard tensorflow && \
         pip install --no-cache --no-deps \
 	         git+https://github.com/pytorch/ignite.git && \
         pip install --no-cache-dir imbalanced-learn iterative-stratification
