@@ -7,7 +7,7 @@ LABEL description="Machine learning and deep learning python3/GPU setup"
 
 # Install tensorflow, pytorch, keras
 RUN pip3 install --no-cache-dir --upgrade \
-	tensorflow-gpu \
+	tensorflow \
 	tensorboard \
 	keras
 
@@ -23,7 +23,7 @@ RUN	pip3 install --no-cache-dir --upgrade xgboost && \
 		--install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
 
 # Install pytorch-nightly + LibTorch, torchvision, ignite
-RUN pip3 --no-cache-dir install torch_nightly -f https://download.pytorch.org/whl/nightly/cu92/torch_nightly.html
+RUN pip3 --no-cache-dir install torch_nightly -f https://download.pytorch.org/whl/nightly/cu100/torch_nightly.html
 
 RUN pip3 --no-cache-dir install --upgrade torchvision_nightly \
 	visdom \
@@ -31,7 +31,7 @@ RUN pip3 --no-cache-dir install --upgrade torchvision_nightly \
 	
 RUN pip3 install --no-cache-dir --no-deps --upgrade git+https://github.com/pytorch/ignite.git
 
-RUN cd /opt/ && wget https://download.pytorch.org/libtorch/nightly/cu92/libtorch-shared-with-deps-latest.zip && \
+RUN cd /opt/ && wget https://download.pytorch.org/libtorch/nightly/cu100/libtorch-shared-with-deps-latest.zip && \
 	7z x libtorch-shared-with-deps-latest.zip
 
 # Some other useful packages:
