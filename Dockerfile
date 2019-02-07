@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include cython typing && \
-    conda install pytorch-nightly cudatoolkit=10.0 -c pytorch && \
+    conda install pytorch cudatoolkit=10.0 -c pytorch && \
     conda clean -ya
 
 RUN pip install --upgrade pip && \
