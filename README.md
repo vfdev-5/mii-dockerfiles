@@ -6,7 +6,7 @@ Storage of dockerfiles :
   - Base :
     - `python3, pip, numpy, pandas, matplotlib, sklearn, scipy, scikit-image, Pillow, opencv, gdal, shapely, ...`
   - ML/DL :
-    - `pytorch, torchvision, Keras, tensorflow-gpu, xgboost, tensorpack`
+    - `pytorch, torchvision, ignite, Keras, tensorflow, xgboost`
 
 - Datascience with python2 (same as previous)
 
