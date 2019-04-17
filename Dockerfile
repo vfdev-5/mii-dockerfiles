@@ -17,17 +17,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     p7zip-full \
     cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
+    curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
     chmod +x ~/miniconda.sh && \
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
+    conda update -q conda && \
     conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include cython typing && \
     conda install pytorch cudatoolkit=10.0 -c pytorch && \
     conda clean -ya
 
 RUN pip install --upgrade pip && \
-      pip install --no-cache-dir numpy && \
-      pip install --no-cache-dir torchvision_nightly --no-deps && \
+      pip install --no-cache-dir numpy torchvision && \
+      pip install --no-cache-dir  --no-deps && \
       pip uninstall -y pillow && \
       CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd && \
       pip install --no-cache-dir \
