@@ -28,7 +28,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
 
 RUN pip install --upgrade pip && \
       pip install --no-cache-dir numpy torchvision && \
-      pip install --no-cache-dir  --no-deps && \
       pip uninstall -y pillow && \
       CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd && \
       pip install --no-cache-dir \
@@ -50,8 +49,7 @@ RUN pip install --upgrade pip && \
         fiona \
       	joblib \
       	rasterio \
-        tqdm \
-        polyaxon-client && \
+        tqdm && \
         apt-get update && apt-get install -y --no-install-recommends \
         	libboost-dev \
         	libboost-system-dev \
