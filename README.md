@@ -12,5 +12,5 @@
 ## How to build image
 
 ```
-docker build -t pytorch_mldl:latest .
+docker build -t vfdev5/mii-dockerfiles:latest .
 ```

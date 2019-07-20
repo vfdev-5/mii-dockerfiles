@@ -23,11 +23,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     rm ~/miniconda.sh && \
     conda update -q conda && \
     conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include cython typing && \
-    conda install pytorch cudatoolkit=10.0 -c pytorch && \
+    conda install pytorch torchvision cudatoolkit=10.0 -c pytorch && \
+    conda install gdal && \
     conda clean -ya
 
 RUN pip install --upgrade pip && \
-      pip install --no-cache-dir numpy torchvision && \
+      pip install --no-cache-dir numpy && \
       pip uninstall -y pillow && \
       CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd && \
       pip install --no-cache-dir \
