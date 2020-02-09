@@ -1,6 +1,6 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
-LABEL description="Pytorch and friends"
+LABEL description="Pytorch 1.4.0 and friends"
 
 ARG PYTHON_VERSION=3.7
 
@@ -22,8 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     conda update -q conda && \
-    conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include cython typing && \
-    conda install pytorch torchvision cudatoolkit=10.0 -c pytorch && \
+    conda install -y python=$PYTHON_VERSION pyyaml ipython mkl mkl-include cython typing && \
+    conda install pytorch>=1.4.0 torchvision>=0.5.0 cudatoolkit -c pytorch && \
     conda install gdal && \
     conda clean -ya
 
@@ -32,36 +32,35 @@ RUN pip install --upgrade pip && \
       pip uninstall -y pillow && \
       CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd && \
       pip install --no-cache-dir \
-      	scipy \
-      	matplotlib \
-        seaborn \
-      	pandas \
-      	scikit-learn \
-      	scikit-image \
-      	scikit-fmm \
-        statsmodels \
-      	Cython \
-      	opencv-python \
-      	h5py \
-      	pydot \
-      	graphviz \
-      	shapely \
-        shapely[vectorized] \
-        fiona \
-      	joblib \
-      	rasterio \
-        tqdm && \
-        apt-get update && apt-get install -y --no-install-recommends \
-        	libboost-dev \
-        	libboost-system-dev \
-        	libboost-filesystem-dev && \
+      scipy \
+      matplotlib \
+      seaborn \
+      pandas \
+      scikit-learn \
+      scikit-image \
+      scikit-fmm \
+      statsmodels \
+      Cython \
+      opencv-python \
+      h5py \
+      pydot \
+      graphviz \
+      shapely \
+      shapely[vectorized] \
+      fiona \
+      joblib \
+      rasterio \
+      tqdm && \
+      apt-get update && apt-get install -y --no-install-recommends \
+        libboost-dev \
+        libboost-system-dev \
+        libboost-filesystem-dev && \
         pip install --no-cache-dir --upgrade xgboost && \
 	      pip install --no-cache-dir --upgrade lightgbm && \
         pip --no-cache-dir install --upgrade visdom \
 	        git+https://github.com/lanpa/tensorboard-pytorch \
           protobuf tensorboard tensorflow && \
-        pip install --no-cache --no-deps \
-	         git+https://github.com/pytorch/ignite.git && \
+        pip install --pre pytorch-ignite && \
         pip install --no-cache-dir imbalanced-learn iterative-stratification
 
 # For CUDA profiling
