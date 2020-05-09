@@ -1,6 +1,6 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
-LABEL description="Pytorch 1.4.0 and friends"
+LABEL description="Pytorch 1.5.0 and friends"
 
 ARG PYTHON_VERSION=3.7
 
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     rm ~/miniconda.sh && \
     conda update -q conda && \
     conda install -y python=$PYTHON_VERSION pyyaml ipython mkl mkl-include cython typing && \
-    conda install pytorch>=1.4.0 torchvision>=0.5.0 cudatoolkit -c pytorch && \
+    conda install pytorch torchvision cudatoolkit=10.2 -c pytorch && \
     conda install gdal && \
     conda clean -ya
 
