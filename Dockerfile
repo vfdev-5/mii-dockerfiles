@@ -1,8 +1,8 @@
-FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
-LABEL description="Pytorch 1.5.0 and friends"
+LABEL description="Pytorch 1.7.0 and friends"
 
-ARG PYTHON_VERSION=3.7
+ARG PYTHON_VERSION=3.8
 
 ENV PATH /opt/conda/bin:$PATH
 
@@ -23,9 +23,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     rm ~/miniconda.sh && \
     conda update -q conda && \
     conda install -y python=$PYTHON_VERSION pyyaml ipython mkl mkl-include cython typing && \
-    conda install pytorch torchvision cudatoolkit=10.2 -c pytorch && \
+    conda install pytorch torchvision cudatoolkit=11.0 -c pytorch && \
     conda install gdal && \
-    conda clean -ya
+    conda clean -ya && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && \
       pip install --no-cache-dir numpy && \
