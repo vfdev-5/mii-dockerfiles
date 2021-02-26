@@ -1,13 +1,13 @@
-FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.2.1-cudnn8-devel-ubuntu20.04
 
-LABEL description="Pytorch 1.7.0 and friends"
-
-ARG PYTHON_VERSION=3.8
+LABEL description="Cuda/CuDNN, Conda, Pytorch 1.7.1 and friends"
 
 ENV PATH /opt/conda/bin:$PATH
 
-RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthenticated \
-    build-essential \
+RUN apt-get update && ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
+    apt-get install -y tzdata && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
+    apt-get install -y --no-install-recommends --allow-unauthenticated \
     curl \
     wget \
     gdal-bin \
@@ -22,16 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends --allow-unauthe
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     conda update -q conda && \
-    conda install -y python=$PYTHON_VERSION pyyaml ipython mkl mkl-include cython typing && \
     conda install pytorch torchvision cudatoolkit=11.0 -c pytorch && \
     conda install gdal && \
     conda clean -ya && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && \
-      pip install --no-cache-dir numpy && \
-      pip uninstall -y pillow && \
-      CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd && \
       pip install --no-cache-dir \
       scipy \
       matplotlib \
@@ -39,10 +35,8 @@ RUN pip install --upgrade pip && \
       pandas \
       scikit-learn \
       scikit-image \
-      scikit-fmm \
-      statsmodels \
       Cython \
-      opencv-python \
+      opencv-python-headless \
       h5py \
       pydot \
       graphviz \
@@ -51,18 +45,14 @@ RUN pip install --upgrade pip && \
       fiona \
       joblib \
       rasterio \
-      tqdm && \
-      apt-get update && apt-get install -y --no-install-recommends \
-        libboost-dev \
-        libboost-system-dev \
-        libboost-filesystem-dev && \
-        pip install --no-cache-dir --upgrade xgboost && \
-	      pip install --no-cache-dir --upgrade lightgbm && \
-        pip --no-cache-dir install --upgrade visdom \
-	        git+https://github.com/lanpa/tensorboard-pytorch \
-          protobuf tensorboard tensorflow && \
-        pip install --pre pytorch-ignite && \
-        pip install --no-cache-dir imbalanced-learn iterative-stratification
+      tqdm \
+      xgboost \
+	    lightgbm \
+      visdom \
+	    tensorboardX \
+      pytorch-ignite
+
+RUN pip uninstall -y pillow && CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd
 
 # For CUDA profiling
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH

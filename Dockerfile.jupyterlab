@@ -1,3 +1,16 @@
 FROM vfdev5/mii-dockerfiles:latest
 
-RUN conda install -y jupyterlab ipywidgets nodejs>=10.0.0 && jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN pip install jupyterlab && \
+    # install nodejs 
+    curl -fsSL https://deb.nodesource.com/setup_15.x | bash - && \
+    apt-get install -y nodejs
+
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+RUN jupyter labextension install @arbennett/base16-nord
+
+# Install C++ kernels
+RUN conda create -n cling xeus-cling -c conda-forge && \
+    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp11 --sys-prefix && \
+    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp14 --sys-prefix && \
+    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp17 --sys-prefix

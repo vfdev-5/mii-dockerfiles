@@ -13,4 +13,5 @@
 
 ```
 docker build -t vfdev5/mii-dockerfiles:latest .
+docker build -t vfdev5/mii-dockerfiles:jupyter . -f Dockerfile.jupyterlab
 ```
