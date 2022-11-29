@@ -1,11 +1,10 @@
 # Pytorch and ML/CV/Stats friends docker image
 
-- conda and python 3.7
-- pytorch 1.5.0 and cuda 10.2
-- torchvision, ignite, tensorboardX, visdom, 
+- conda and python 3.9
+- pytorch 1.13 and cuda 11.6
+- torchvision, ignite
 - scikit-learn, matplotlib ...
-- opencv, shapely, gdal, fiona
-- xgboost, lightgbm
+- opencv
 - ...
 
 

@@ -1,9 +1,7 @@
 FROM vfdev5/mii-dockerfiles:latest
 
 RUN pip install jupyterlab && \
-    # install nodejs 
-    curl -fsSL https://deb.nodesource.com/setup_15.x | bash - && \
-    apt-get install -y nodejs
+    conda install nodejs
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 

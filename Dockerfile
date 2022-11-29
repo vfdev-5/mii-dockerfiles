@@ -1,18 +1,15 @@
-FROM nvidia/cuda:11.2.1-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04
 
-LABEL description="Cuda/CuDNN, Conda, Pytorch 1.7.1 and friends"
+LABEL description="Cuda/CuDNN, Conda, Pytorch 1.13.1 and friends"
 
 ENV PATH /opt/conda/bin:$PATH
 
-RUN apt-get update && ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
+RUN apt-get update && ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime && \
     apt-get install -y tzdata && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get install -y --no-install-recommends --allow-unauthenticated \
     curl \
     wget \
-    gdal-bin \
-    libgdal-dev \
-    graphviz \
     git \
     p7zip-full \
     cmake && \
@@ -22,8 +19,7 @@ RUN apt-get update && ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     conda update -q conda && \
-    conda install pytorch torchvision cudatoolkit=11.0 -c pytorch && \
-    conda install gdal && \
+    conda install pytorch torchvision pytorch-cuda=11.6 -c pytorch -c nvidia && \
     conda clean -ya && \
     rm -rf /var/lib/apt/lists/*
 
@@ -38,21 +34,7 @@ RUN pip install --upgrade pip && \
       Cython \
       opencv-python-headless \
       h5py \
-      pydot \
-      graphviz \
-      shapely \
-      shapely[vectorized] \
-      fiona \
-      joblib \
-      rasterio \
       tqdm \
-      xgboost \
-	    lightgbm \
-      visdom \
-	    tensorboardX \
       pytorch-ignite
 
 RUN pip uninstall -y pillow && CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd
-
-# For CUDA profiling
-ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
