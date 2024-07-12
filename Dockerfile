@@ -1,6 +1,6 @@
-FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04
+FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
-LABEL description="Cuda/CuDNN, Conda, Pytorch 1.13.1 and friends"
+LABEL description="Cuda/CuDNN, Conda, Pytorch 2.3.1 and friends"
 
 ENV PATH /opt/conda/bin:$PATH
 
@@ -19,7 +19,7 @@ RUN apt-get update && ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime && 
     ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     conda update -q conda && \
-    conda install pytorch torchvision pytorch-cuda=11.6 -c pytorch -c nvidia && \
+    conda install -y pytorch torchvision pytorch-cuda=12.1 -c pytorch -c nvidia && \
     conda clean -ya && \
     rm -rf /var/lib/apt/lists/*
 

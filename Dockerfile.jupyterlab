@@ -3,9 +3,7 @@ FROM vfdev5/mii-dockerfiles:latest
 RUN pip install jupyterlab && \
     conda install nodejs
 
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
-RUN jupyter labextension install @arbennett/base16-nord
+RUN pip install ipywidgets
 
 # Install C++ kernels
 RUN conda create -n cling xeus-cling -c conda-forge && \
