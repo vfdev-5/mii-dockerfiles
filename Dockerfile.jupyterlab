@@ -1,12 +1,12 @@
 FROM vfdev5/mii-dockerfiles:latest
 
-RUN pip install jupyterlab && \
-    conda install nodejs
+RUN pip install jupyterlab
+    #  && conda install nodejs
 
 RUN pip install ipywidgets
 
-# Install C++ kernels
-RUN conda create -n cling xeus-cling -c conda-forge && \
-    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp11 --sys-prefix && \
-    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp14 --sys-prefix && \
-    jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp17 --sys-prefix
+# # Install C++ kernels
+# RUN conda create -n cling xeus-cling -c conda-forge && \
+#     jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp11 --sys-prefix && \
+#     jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp14 --sys-prefix && \
+#     jupyter kernelspec install /opt/conda/envs/cling/share/jupyter/kernels/xcpp17 --sys-prefix

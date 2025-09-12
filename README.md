@@ -1,7 +1,7 @@
 # Pytorch and ML/CV/Stats friends docker image
 
-- conda and python 3.9
-- pytorch 2.3 and cuda 12.4
+- python 3.12
+- pytorch 2.X and cuda 12.9
 - torchvision, ignite
 - scikit-learn, matplotlib ...
 - opencv
